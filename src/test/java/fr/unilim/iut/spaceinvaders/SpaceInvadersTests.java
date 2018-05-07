@@ -183,6 +183,8 @@ public class SpaceInvadersTests {
 				".......VVV.....\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
 			}
 		 
+		 
+		 
 		 @Test
 			public void test_UnNouveauVaisseauPositionneDansEspaceJeuMaisAvecDimensionTropGrande_DoitLeverUneExceptionDeDebordement() {
 				

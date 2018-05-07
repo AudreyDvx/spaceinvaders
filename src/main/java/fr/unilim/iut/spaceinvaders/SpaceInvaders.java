@@ -41,6 +41,7 @@ public class SpaceInvaders {
 		return this.aUnVaisseau() && vaisseau.occupeLaPosition(x, y);
 	}
 
+	
 	private boolean aUnVaisseau() {
 		return vaisseau != null;
 	}

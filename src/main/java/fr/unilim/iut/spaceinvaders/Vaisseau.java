@@ -13,6 +13,7 @@ public class Vaisseau {
 	   this.x = x;
 	   this.y = y;
     }
+   
     
     public Vaisseau(int longueur, int hauteur) {
 		this(longueur, hauteur, 0, 0);
