@@ -4,7 +4,6 @@ package fr.unilim.iut.spaceinvaders.model;
 import fr.unilim.iut.spaceinvaders.moteurjeu.Commande;
 import fr.unilim.iut.spaceinvaders.moteurjeu.Jeu;
 import fr.unilim.iut.spaceinvaders.moteurjeu.Personnage;
-import fr.unilim.iut.spaceinvaders.utils.Constante;
 import fr.unilim.iut.spaceinvaders.utils.DebordementEspaceJeuException;
 import fr.unilim.iut.spaceinvaders.utils.HorsEspaceJeuException;
 
@@ -34,10 +33,10 @@ public class SpaceInvaders implements Jeu{
 
 	
 	public void initialiserJeu() {
-		Position positionVaisseau = new Position(this.longueur/2,this.hauteur-1);
-		Dimension dimensionVaisseau = new Dimension(Constante.VAISSEAU_LONGUEUR, Constante.VAISSEAU_HAUTEUR);
-		positionnerUnNouveauVaisseau(dimensionVaisseau, positionVaisseau, Constante.VAISSEAU_VITESSE);
-	 }
+	    Position positionVaisseau = new Position(this.longueur/2,this.hauteur-1);
+	    Dimension dimensionVaisseau = new Dimension(Constante.VAISSEAU_LONGUEUR, Constante.VAISSEAU_HAUTEUR);
+	    positionnerUnNouveauVaisseau(dimensionVaisseau, positionVaisseau,8);
+    }
 	
 	
 	public String recupererEspaceJeuDansChaineASCII() {
@@ -64,7 +63,7 @@ public class SpaceInvaders implements Jeu{
 		return this.aUnVaisseau() && vaisseau.occupeLaPosition(x, y);
 	}
 
-	private boolean aUnVaisseau() {
+	boolean aUnVaisseau() {
 		return vaisseau != null;
 	}
 
@@ -119,17 +118,29 @@ public class SpaceInvaders implements Jeu{
 		return ("" + this.getPj());
 	}
 
-	public void evoluer(Commande commandeUser) {
-		this.getPj().deplacer(commandeUser);
+	  public void evoluer(Commande commandeUser) {
 		
-	}
+         if (commandeUser.gauche) {
+             deplacerVaisseauVersLaGauche();
+         }
+		
+        if (commandeUser.droite) {
+	        deplacerVaisseauVersLaDroite();
+        }
 
+      }
 
-	public boolean etreFini() {
-		return false;
-	}
+	  public boolean etreFini() {
+        return false; 
+     }
+     
 	public Personnage getPj() {
 		return pj;
+	}
+
+
+	public Vaisseau recupererVaisseau() {
+		return this.vaisseau;
 	}
 
 
