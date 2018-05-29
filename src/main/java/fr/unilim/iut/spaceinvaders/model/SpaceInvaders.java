@@ -1,11 +1,12 @@
 package fr.unilim.iut.spaceinvaders.model;
 
-
+import fr.unilim.iut.spaceinvaders.*;
 import fr.unilim.iut.spaceinvaders.moteurjeu.Commande;
 import fr.unilim.iut.spaceinvaders.moteurjeu.Jeu;
 import fr.unilim.iut.spaceinvaders.moteurjeu.Personnage;
 import fr.unilim.iut.spaceinvaders.utils.DebordementEspaceJeuException;
 import fr.unilim.iut.spaceinvaders.utils.HorsEspaceJeuException;
+import fr.unilim.iut.spaceinvaders.utils.MissileException;
 
 
 public class SpaceInvaders implements Jeu{
@@ -137,6 +138,10 @@ public class SpaceInvaders implements Jeu{
         if (commandeUser.droite) {
 	        deplacerVaisseauVersLaDroite();
         }
+        
+        if (commandeUser.tir && !this.aUnMissile()) {
+            tirerUnMissile(new Dimension(Constante.MISSILE_LONGUEUR, Constante.MISSILE_HAUTEUR),Constante.MISSILE_VITESSE);
+ 	    }
 
       }
 
@@ -153,11 +158,20 @@ public class SpaceInvaders implements Jeu{
 		return this.vaisseau;
 	}
 
-
-	public void tirerUnMissile(Dimension dimension, int vitesse) {
-			this.missile = this.vaisseau.tirerUnMissile(dimension,vitesse);
+	public Missile recupererMissile() {
+		return this.missile;
 	}
 
 
+	 public void tirerUnMissile(Dimension dimensionMissile, int vitesseMissile) {
+			
+		   if ((vaisseau.hauteur()+ dimensionMissile.hauteur()) > this.hauteur )
+			   throw new MissileException("Pas assez de hauteur libre entre le vaisseau et le haut de l'espace jeu pour tirer le missile");
+							
+		   this.missile = this.vaisseau.tirerUnMissile(dimensionMissile,vitesseMissile);
+     }
+
+
+	
 
 }
