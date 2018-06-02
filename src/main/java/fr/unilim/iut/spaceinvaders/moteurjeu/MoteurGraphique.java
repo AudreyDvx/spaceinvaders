@@ -49,6 +49,7 @@ public class MoteurGraphique {
 		while (!this.jeu.etreFini()) {
 			// demande controle utilisateur
 			Commande c = controle.getCommande();
+			
 			// fait evoluer le jeu
 			this.jeu.evoluer(c);
 			// affiche le jeu
