@@ -107,22 +107,30 @@ public class SpaceInvaders implements Jeu{
 			vaisseau.positionner(0, vaisseau.ordonneeLaPlusHaute());
 		}
 	}
-
+	
+	
+	
 	public void deplacerEnvahisseurVersLaDroite() {
 		if (envahisseur.abscisseLaPlusADroite() < (longueur - 1)) {
 			envahisseur.deplacerHorizontalementVers(Direction.DROITE);
+			
 			if (!estDansEspaceJeu(envahisseur.abscisseLaPlusADroite(), envahisseur.ordonneeLaPlusHaute())) {
 				envahisseur.positionner(longueur - envahisseur.longueur(), envahisseur.ordonneeLaPlusHaute());
 			}
+		}else {
+			envahisseur.setDeplacementEnvahisseurGauche(false);
 		}
 		
 	}
 		
+	
 	public void deplacerEnvahisseurVersLaGauche() {
 		if (0 < envahisseur.abscisseLaPlusAGauche())
 			envahisseur.deplacerHorizontalementVers(Direction.GAUCHE);
+			
 		if (!estDansEspaceJeu(envahisseur.abscisseLaPlusAGauche(), envahisseur.ordonneeLaPlusHaute())) {
 			envahisseur.positionner(0, envahisseur.ordonneeLaPlusHaute());
+			envahisseur.setDeplacementEnvahisseurGauche(true);
 		}
 	}
 
@@ -160,13 +168,11 @@ public class SpaceInvaders implements Jeu{
 	  public void evoluer(Commande commandeUser) {
 		  
 		  if(this.aUnEnvahisseur()) {
-			if(envahisseur.abscisseLaPlusADroite() < (longueur - 1)){
+			if(envahisseur.isDeplacementEnvahisseurGauche()){
 				  this.deplacerEnvahisseurVersLaDroite();
 			  }
 			else {
-				for(int i=0;i<(longueur-1);i++) {
-					this.deplacerEnvahisseurVersLaGauche();
-				}
+				this.deplacerEnvahisseurVersLaGauche();
 				
 			}
 		  }
