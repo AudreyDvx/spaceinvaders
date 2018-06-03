@@ -50,6 +50,7 @@ public abstract class Sprite {
 	public void deplacerHorizontalementVers(Direction direction) {
 		this.origine.changerAbscisse(this.origine.abscisse() + direction.valeur()*vitesse);
 	}
+	
 
 	public void positionner(int x, int y) {
 		this.origine.changerAbscisse(x);

@@ -160,8 +160,15 @@ public class SpaceInvaders implements Jeu{
 	  public void evoluer(Commande commandeUser) {
 		  
 		  if(this.aUnEnvahisseur()) {
-			  this.deplacerEnvahisseurVersLaDroite();
-			  
+			if(envahisseur.abscisseLaPlusADroite() < (longueur - 1)){
+				  this.deplacerEnvahisseurVersLaDroite();
+			  }
+			else {
+				for(int i=0;i<(longueur-1);i++) {
+					this.deplacerEnvahisseurVersLaGauche();
+				}
+				
+			}
 		  }
 		 
 		  
