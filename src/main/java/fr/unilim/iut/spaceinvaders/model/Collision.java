@@ -2,7 +2,7 @@ package fr.unilim.iut.spaceinvaders.model;
 
 public class Collision {
 
-	public void detecterCollision(Sprite missile, Sprite envahisseur) {
+	public boolean detecterCollision(Sprite missile, Sprite envahisseur) {
 		
 		if(((missile.ordonneeLaPlusHaute()<=envahisseur.ordonneeLaPlusHaute() && missile.ordonneeLaPlusHaute()>=envahisseur.ordonneeLaPlusBasse()) 
 			|| (missile.ordonneeLaPlusBasse()<=envahisseur.ordonneeLaPlusHaute() && missile.ordonneeLaPlusBasse()>=envahisseur.ordonneeLaPlusBasse()))
@@ -10,9 +10,12 @@ public class Collision {
 			|| (missile.abscisseLaPlusAGauche()>=envahisseur.abscisseLaPlusAGauche() && missile.abscisseLaPlusAGauche()<=envahisseur.abscisseLaPlusADroite())) 
 			){
 			
-			envahisseur=null;
+			//envahisseur=null;
+			
+			return true;
 			
 		}
+		return false;
 		
 	}
 	

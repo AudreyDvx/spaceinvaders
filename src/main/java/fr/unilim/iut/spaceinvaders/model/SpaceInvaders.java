@@ -35,6 +35,7 @@ public class SpaceInvaders implements Jeu{
 	public SpaceInvaders(int longueur, int hauteur) {
 		this.longueur = longueur;
 		this.hauteur = hauteur;
+		this.collision = new Collision();
 	}
 
 	
@@ -193,10 +194,12 @@ public class SpaceInvaders implements Jeu{
         if(this.aUnMissile()) {
         	this.deplacerMissile();
        
-        }/*
+        }
         if(this.aUnEnvahisseur() && this.aUnMissile()) {
-        	collision.detecterCollision(this.missile, this.envahisseur);
-        }*/
+        	if(collision.detecterCollision(this.missile, this.envahisseur)) {
+        		this.envahisseur=null;
+        	}
+        }
 		  
       }
 
